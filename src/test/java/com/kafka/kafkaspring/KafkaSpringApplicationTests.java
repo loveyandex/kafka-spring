@@ -9,5 +9,6 @@ class KafkaSpringApplicationTests {
 	@Test
 	void contextLoads() {
 	}
+	
 
 }

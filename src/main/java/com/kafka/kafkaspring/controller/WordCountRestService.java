@@ -17,18 +17,19 @@ import lombok.AllArgsConstructor;
 @RestController
 @AllArgsConstructor
 public class WordCountRestService {
-
-      @Autowired
+ 
     private final StreamsBuilderFactoryBean factoryBean;
-
-    @Autowired
+ 
     private final KafkaProducer kafkaProducer;
 
     @GetMapping("/count/{word}")
     public Long getWordCount(@PathVariable String word) {
         KafkaStreams kafkaStreams =  factoryBean.getKafkaStreams();
+
         ReadOnlyKeyValueStore<String, Long> counts = kafkaStreams
             .store(StoreQueryParameters.fromNameAndType("counts", QueryableStoreTypes.keyValueStore()));
+
+            System.out.println("word is "+word);
         return counts.get(word);
     }
 
