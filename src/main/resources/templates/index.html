@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>spring</title>
+</head>
+
+<body>
+    <script>
+        function connect() {
+            ws = new WebSocket("ws://localhost:9000/name");
+            ws.onmessage = function(data) {
+                showGreeting(data.data);
+            };
+            setConnected(true);
+        }
+
+        function disconnect() {
+            if (ws != null) {
+                ws.close();
+            }
+            setConnected(false);
+            console.log("Disconnected");
+        }
+
+        function sendName() {
+            ws.send($("#name").val());
+        }
+
+        function showGreeting(message) {
+            $("#greetings").append(" " + message + "");
+        }
+    </script>
+</body>
+
+</html>

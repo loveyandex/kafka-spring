@@ -24,7 +24,7 @@ public class kafkacount {
             props.put(StreamsConfig.DEFAULT_VALUE_SERDE_CLASS_CONFIG, Serdes.String().getClass());
 
             StreamsBuilder builder = new StreamsBuilder();
-            KStream<String, String> textLines = builder.stream("TextLinesTopic");
+            KStream<String, String> textLines = builder.stream("quickstart");
             KTable<String, Long> wordCounts = textLines
                         .flatMapValues(textLine -> Arrays.asList(textLine.toLowerCase().split("\\W+")))
                         .groupBy((key, word) -> word)
