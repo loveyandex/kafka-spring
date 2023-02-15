@@ -24,8 +24,10 @@ public class KafkaProducerController {
       public void sendMessageToKafkaTopic(@RequestParam("message") String message) {
             this.producerService.sendMessage(message);
       }
+
       @GetMapping(value = "/publish/{msg}")
       public void sendMessageToKafkaTopicGet(@PathVariable String msg) {
             this.producerService.sendMessage(msg);
       }
+
 }

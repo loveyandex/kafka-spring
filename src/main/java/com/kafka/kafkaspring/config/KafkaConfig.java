@@ -1,4 +1,4 @@
-package com.kafka.kafkaspring.controller;
+package com.kafka.kafkaspring.config;
 
 import static org.apache.kafka.streams.StreamsConfig.APPLICATION_ID_CONFIG;
 import static org.apache.kafka.streams.StreamsConfig.BOOTSTRAP_SERVERS_CONFIG;
@@ -25,8 +25,8 @@ import org.springframework.kafka.config.TopicBuilder;
 @EnableKafkaStreams
 public class KafkaConfig {
 
-      // @Value(value = "${spring.kafka.bootstrap-servers}")
-      // private String bootstrapAddress;
+      @Value(value = "${spring.kafka.bootstrap-servers}")
+      private String bootstrapAddress;
 
       // @Value(value = "${spring.kafka.streams.state.dir}")
       // private String stateStoreLocation;
@@ -35,7 +35,7 @@ public class KafkaConfig {
       KafkaStreamsConfiguration kStreamsConfig() {
             Map<String, Object> props = new HashMap<>();
             props.put(APPLICATION_ID_CONFIG, "streams-app");
-            props.put(BOOTSTRAP_SERVERS_CONFIG, "localhost:9092");
+            props.put(BOOTSTRAP_SERVERS_CONFIG, bootstrapAddress);
             props.put(DEFAULT_KEY_SERDE_CLASS_CONFIG, Serdes.String().getClass().getName());
             props.put(DEFAULT_VALUE_SERDE_CLASS_CONFIG, Serdes.String().getClass().getName());
             // configure the state location to allow tests to use clean state for every run

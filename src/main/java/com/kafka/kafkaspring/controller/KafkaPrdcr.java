@@ -10,9 +10,9 @@ import org.slf4j.LoggerFactory;
  
 @AllArgsConstructor
 @Component
-public class KafkaProducer {
+public class KafkaPrdcr {
       
-      private static final Logger logger = LoggerFactory.getLogger(KafkaProducer.class);
+      private static final Logger logger = LoggerFactory.getLogger(KafkaPrdcr.class);
 
 
       private final KafkaTemplate<String, String> kafkaTemplate;

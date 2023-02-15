@@ -1,7 +1,4 @@
-FROM maven:3.8.2-jdk-8
+FROM openjdk:17
 
-WORKDIR /bezkoder-app
-COPY . .
-RUN mvn clean install
-
-CMD mvn spring-boot:run
+COPY target/*.jar app.jar
+ENTRYPOINT ["java", "-jar", "/app.jar"]

@@ -17,24 +17,25 @@ import lombok.AllArgsConstructor;
 @RestController
 @AllArgsConstructor
 public class WordCountRestService {
- 
+
     private final StreamsBuilderFactoryBean factoryBean;
- 
-    private final KafkaProducer kafkaProducer;
+
+    private final KafkaPrdcr kafkaProducer;
 
     @GetMapping("/count/{word}")
     public Long getWordCount(@PathVariable String word) {
-        KafkaStreams kafkaStreams =  factoryBean.getKafkaStreams();
+        KafkaStreams kafkaStreams = factoryBean.getKafkaStreams();
 
         ReadOnlyKeyValueStore<String, Long> counts = kafkaStreams
-            .store(StoreQueryParameters.fromNameAndType("counts", QueryableStoreTypes.keyValueStore()));
+                .store(StoreQueryParameters.fromNameAndType("counts", QueryableStoreTypes.keyValueStore()));
 
-            System.out.println("word is "+word);
+        System.out.println("word is " + word);
         return counts.get(word);
     }
 
     @PostMapping("/message")
     public void addMessage(@RequestBody String message) {
+        System.out.println("msg is" + message);
         kafkaProducer.sendMessage(message);
     }
 }

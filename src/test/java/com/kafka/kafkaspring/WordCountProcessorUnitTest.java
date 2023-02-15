@@ -44,12 +44,15 @@ class WordCountProcessorUnitTest {
 
             inputTopic.pipeInput("key", "hello world");
             inputTopic.pipeInput("key2", "hello");
+            inputTopic.pipeInput("key3", "hello again");
 
             assertThat(outputTopic.readKeyValuesToList())
                 .containsExactly(
                     KeyValue.pair("hello", 1L),
                     KeyValue.pair("world", 1L),
-                    KeyValue.pair("hello", 2L)
+                    KeyValue.pair("hello", 2L),
+                    KeyValue.pair("hello", 3L),
+                    KeyValue.pair("again", 1L)
                 );
         }
     }
