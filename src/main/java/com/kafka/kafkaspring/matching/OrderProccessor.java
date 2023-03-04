@@ -15,7 +15,7 @@ import org.apache.kafka.streams.kstream.ValueMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-@Component
+// @Component
 public class OrderProccessor {
 
       private static final Serde<String> STRING_SERDE = Serdes.String();
